@@ -1,0 +1,22 @@
+{
+  "name": "Custom",
+  "prefix": "custom",
+  "uri": "http://custom",
+  "xml": {
+    "tagAlias": "lowerCase"
+  },
+  "associations": [],
+  "types": [
+    {
+      "name": "CustomServiceTask",
+      "extends": ["bpmn:ServiceTask"],
+      "properties": [
+        {
+          "name": "task",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+<div class="row col-12 pr-0">
+  <!--   <div>
+    <button type="button" (click)="saveWorkFlow()">Save</button>
+  </div> -->
+  <div class="diagram-parent">
+    <app-diagram #appDiagram [file]="diagramFile" (importDone)="handleImported($event)"></app-diagram>
+
+    <div class="import-error" *ngIf="importError">
+      <strong>Failed to render diagram: </strong>
+      {{ importError.message }}
+    </div>
+  </div>
+</div>

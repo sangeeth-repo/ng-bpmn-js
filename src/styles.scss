@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.bpmn-icon-service-task {
+  color: #ffc107 !important;
+}
+
+.djs-palette .bpmn-icon-service-task:hover {
+  color: #005df7 !important;
+}
