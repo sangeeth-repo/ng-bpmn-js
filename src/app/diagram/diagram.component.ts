@@ -25,9 +25,18 @@ export class DiagramComponent implements OnInit {
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
+    /*     this.getServiceTasks().subscribe(data => {
+          sessionStorage.setItem("serviceTasks", data);
+        });
+     */
+    this.initBpmn();
+  }
+
+  initBpmn(): void {
     this.bpmnJS = new BpmnJS({
       propertiesPanel: {
         parent: '#properties'
@@ -94,5 +103,9 @@ export class DiagramComponent implements OnInit {
 
   getBpmnContent(): Promise<void> {
     return this.bpmnJS.saveXML({ format: true });
+  }
+
+  getServiceTasks(): Observable<any> {
+    return this.http.get('assets/bpmn/serviceTasks.json');
   }
 }

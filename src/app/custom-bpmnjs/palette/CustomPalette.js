@@ -21,8 +21,6 @@ export default class CustomPalette {
     }
 
     return function (entries) {
-      //  console.log("ENtries", entries);
-
       delete entries["create.group"];
       delete entries["create.participant-expanded"];
 
@@ -37,17 +35,6 @@ export default class CustomPalette {
       };
       return entries;
     };
-    /*     return {
-          'create.service-task': {
-            group: 'activity',
-            className: 'bpmn-icon-bpmn-io',
-            title: translate('Create ServiceTask'),
-            action: {
-              dragstart: createServiceTask,
-              click: createServiceTask
-            }
-          },
-        } */
   }
 }
 

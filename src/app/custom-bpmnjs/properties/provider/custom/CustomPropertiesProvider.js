@@ -8,6 +8,7 @@ export default function CustomPropertiesProvider(propertiesPanel, translate) {
         return function (entries) {
             let generalTab = entries.find((e) => e.id === "general");
             const groups = generalTab.groups;
+
             let generalGroup = groups.find((e) => e.id === "general");
 
             if (element.type === "bpmn:ServiceTask") {

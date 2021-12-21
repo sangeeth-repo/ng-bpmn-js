@@ -12,7 +12,6 @@ export default class CustomContextPad {
   }
 
   getContextPadEntries(element) {
-    //    console.log("element", element);
     const {
       autoPlace,
       create,
@@ -37,9 +36,6 @@ export default class CustomContextPad {
     }
 
     return function (entries) {
-      //    console.log("ENtries", entries);
-      //  console.log("Element Type", element.type);
-
       if (element.type === "bpmn:ServiceTask") {
         delete entries["replace"];
       }
@@ -55,17 +51,6 @@ export default class CustomContextPad {
       };
       return entries;
     };
-    /*         return {
-              'append.service-task': {
-                group: 'model',
-                className: 'bpmn-icon-bpmn-io',
-                title: translate('Append ServiceTask'),
-                action: {
-                  click: appendServiceTask,
-                  dragstart: appendServiceTaskStart
-                }
-              }
-            }; */
   }
 }
 
