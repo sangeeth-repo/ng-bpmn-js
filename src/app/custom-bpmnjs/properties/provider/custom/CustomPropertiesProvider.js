@@ -11,13 +11,23 @@ export default function CustomPropertiesProvider(propertiesPanel, translate) {
 
             let generalGroup = groups.find((e) => e.id === "general");
 
+            /*             let connectorTab = entries.find((e) => e.id === "connector");
+                        const connectorGroups = connectorTab.groups;
+                        console.log("connectorGroups", connectorGroups);
+                        //          generalGroup.entries.concat(connectorGroups);
+                        console.log("generalGroup", generalGroup); */
+
             if (element.type === "bpmn:ServiceTask") {
                 generalTab.id = "config";
                 generalTab.label = "Configuration";
                 generalGroup.id = "config";
                 generalGroup.label = "Configuration";
-                customProps(generalGroup, element, translate);
+                //                customProps(generalGroup, element, translate);
                 generalTab.groups = [generalGroup];
+                /*     connectorGroups.forEach(connectorGroup => {
+                        generalTab.groups.push(connectorGroup);
+                    }); */
+
 
                 entries = [generalTab];
             }

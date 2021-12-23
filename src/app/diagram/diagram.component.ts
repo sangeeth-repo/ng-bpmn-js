@@ -9,7 +9,9 @@ import { HttpClient } from '@angular/common/http';
 import customControlsModule from 'src/app/custom-bpmnjs/palette';
 import customPropertiesProviderModule from 'src/app/custom-bpmnjs/properties/provider/custom';
 import customModdleDescriptor from 'src/app/custom-bpmnjs/properties/descriptors/custom.json';
-
+import taskTemplate from 'src/app/custom-bpmnjs/element-templates/task-template.json';
+//import testTemplate from 'src/app/custom-bpmnjs/element-templates/test.json';
+//import sampleTemplate from 'camunda-modeler/resources/element-templates/samples.json';
 
 @Component({
   selector: 'app-diagram',
@@ -18,6 +20,7 @@ import customModdleDescriptor from 'src/app/custom-bpmnjs/properties/descriptors
 })
 export class DiagramComponent implements OnInit {
   private bpmnJS: BpmnJS;
+  private myTasks: any[];
 
   @ViewChild('ref', { static: true }) private el!: ElementRef;
   @Output() private importDone: EventEmitter<any> = new EventEmitter();
@@ -33,6 +36,25 @@ export class DiagramComponent implements OnInit {
           sessionStorage.setItem("serviceTasks", data);
         });
      */
+    this.myTasks = [
+      {
+        "name": "Task Template",
+        "id": "taskTemplate",
+        "appliesTo": ["bpmn:ServiceTask"],
+        "properties": [
+          {
+            "label": "Tasks",
+            "type": "String",
+            "editable": true,
+            "binding": {
+              "type": "property",
+              "name": "camunda:class"
+            }
+          }
+        ]
+      }
+    ];
+
     this.initBpmn();
   }
 
@@ -47,6 +69,7 @@ export class DiagramComponent implements OnInit {
         customControlsModule,
         customPropertiesProviderModule
       ],
+      elementTemplates: taskTemplate,
       moddleExtensions: {
         camunda: camundaModdleDescriptor,
         custom: customModdleDescriptor
@@ -58,6 +81,11 @@ export class DiagramComponent implements OnInit {
         this.bpmnJS.get('canvas').zoom('fit-viewport');
       }
     });
+
+    this.bpmnJS.on('elementTemplates.errors', function (event) {
+      console.log('template load errors', event.errors);
+    });
+    this.bpmnJS.get('elementTemplatesLoader').reload();
 
     this.bpmnJS.attachTo(this.el.nativeElement);
     this.loadDiagram(this.file);
