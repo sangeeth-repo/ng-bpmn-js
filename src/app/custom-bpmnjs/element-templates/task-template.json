@@ -1,19 +1,65 @@
 [
   {
     "$schema": "https://unpkg.com/@camunda/element-templates-json-schema@0.4.0/resources/schema.json",
-    "name": "Task Template",
+    "name": "Get User",
     "id": "taskTemplate",
     "appliesTo": ["bpmn:ServiceTask"],
-    "properties": [
-      {
-        "label": "Tasks",
-        "type": "String",
-        "editable": true,
-        "binding": {
-          "type": "property",
-          "name": "camunda:class"
-        }
+    "properties": [],
+    "scopes": {
+      "camunda:Connector": {
+        "properties": [
+          {
+            "label": "Connector Id",
+            "type": "String",
+            "value": "http-connector",
+            "editable": false,
+            "binding": {
+              "type": "property",
+              "name": "connectorId"
+            }
+          },
+          {
+            "label": "Method",
+            "type": "String",
+            "value": "GET",
+            "editable": false,
+            "binding": {
+              "type": "camunda:inputParameter",
+              "name": "method"
+            }
+          },
+          {
+            "label": "URL",
+            "type": "String",
+            "value": "https://dev.aaas.hidcloud.com/scim/${tenantId}/v2/Users/${inputUserId}",
+            "editable": false,
+            "binding": {
+              "type": "camunda:inputParameter",
+              "name": "url"
+            }
+          },
+          {
+            "label": "Response Status",
+            "type": "String",
+            "value": "GetUserStatuscode",
+            "editable": false,
+            "binding": {
+              "type": "camunda:outputParameter",
+              "source": "${statusCode}"
+            }
+          },
+          {
+            "label": "Response Details",
+            "type": "String",
+            "value": "GetUserDetailsResp",
+            "editable": false,
+            "binding": {
+              "type": "camunda:outputParameter",
+              "source": "${response}"
+            }
+          }
+        ]
       }
-    ]
+    }
   }
 ]
